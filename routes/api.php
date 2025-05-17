@@ -9,10 +9,18 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
 
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'pokemon'
+], function (){
+    Route::get('', [PokedexController::class, 'getPokemon']) 
+        // -> middleware(['api', 'auth:api'])
+    ;
+});
