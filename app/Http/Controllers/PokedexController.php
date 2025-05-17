@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class PokedexController extends Controller
 {
 
-
-
     public function getPokemon()
     {
         $pokemon = 'blastoise';
