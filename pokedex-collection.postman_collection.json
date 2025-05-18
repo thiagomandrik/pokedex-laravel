@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "df201afe-3054-4d4b-ab2d-1f07b76dfc1c",
+		"name": "pokedex-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32551196"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"teste@teste.com\",\n    \"password\": \"senha1233\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"oioi\",\n    \"email\": \"teste@teste.com\",\n    \"password\": \"senha1233\",\n    \"password_confirmation\": \"senha1233\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "who am i",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pokedex",
+			"item": [
+				{
+					"name": "detail pokemon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/pokedex/pikachu",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pokedex",
+								"pikachu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list pokemons",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/pokedex?limit=10&offset=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pokedex"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request GET 'http://localhost:8000/api/pokedex?limit=20&offset=0' \\\n--header 'Accept: application/json'\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favorites",
+			"item": [
+				{
+					"name": "add to favorite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_TOKEN_HERE"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/favorites/pikachu",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"favorites",
+								"pikachu"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8000/api/favorites/pikachu' \\\n--header 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n--header 'Accept: application/json'\n"
+					},
+					"response": []
+				},
+				{
+					"name": "remove from favorite",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_TOKEN_HERE"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/favorites/pikachu",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"favorites",
+								"pikachu"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8000/api/favorites/pikachu' \\\n--header 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n--header 'Accept: application/json'\n"
+					},
+					"response": []
+				},
+				{
+					"name": "list favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_TOKEN_HERE"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/favorites",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"favorites"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request GET 'http://localhost:8000/api/favorites' \\\n--header 'Authorization: Bearer YOUR_TOKEN_HERE' \\\n--header 'Accept: application/json'\n"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "bearer_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE3NDc1NzQyNjQsImV4cCI6MTc0NzU3Nzg2NCwibmJmIjoxNzQ3NTc0MjY0LCJqdGkiOiJraXhSRFpVN3phem1hMHk5Iiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.xpIP0nIFZulJVkeZwXuh2StCvKyM_eM4ZWnfk8B3wvQ",
+			"type": "string"
+		}
+	]
+}
