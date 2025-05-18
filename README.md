@@ -13,6 +13,8 @@ Projeto para testar conhecimentos com Laravel utilizando JWT para autenticação
 ### Configuração de ambiente:
 
 ```bash
+cd pokedex-laravel
+sudo chown -R 33:33 .
 cp .env.example .env
 ```
 
