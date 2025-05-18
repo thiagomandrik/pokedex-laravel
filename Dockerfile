@@ -1,8 +1,5 @@
 FROM php:8.3-fpm
 
-ARG user=server
-ARG uid=1000
-
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -18,16 +15,10 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
 WORKDIR /var/www
 
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 RUN mkdir -p /var/www/storage /var/www/storage/logs /var/www/storage/framework/cache/data /var/www/bootstrap/cache \
-    && chown -R $user:www-data /var/www/storage /var/www/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-USER $user
