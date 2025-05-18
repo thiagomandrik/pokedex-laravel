@@ -4,6 +4,7 @@ Projeto para testar conhecimentos com Laravel utilizando JWT para autenticação
 
 ## Stack
 - PHP 8.3
+- Composer
 - Laravel 10
 - MySQL
 
