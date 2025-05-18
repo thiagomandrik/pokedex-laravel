@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PokedexController;
+use App\Http\Controllers\FavoriteController;
 
 // Auth routes
 Route::prefix('auth')->middleware('api')->group(function () {
@@ -19,3 +20,9 @@ Route::prefix('pokedex')->group(function () {
     Route::get('{name}', [PokedexController::class, 'showPokemon']);
 });
 
+// Protected routes to manage favorite pokemons
+Route::prefix('favorites')->middleware(['api', 'auth:api'])->group(function () {
+    Route::post('{name}', [FavoriteController::class, 'store']);
+    Route::delete('{name}', [FavoriteController::class, 'destroy']);
+    Route::get('', [FavoriteController::class, 'index']);
+});
