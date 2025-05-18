@@ -19,7 +19,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'pokemon'
+    'prefix' => 'pokedex'
 ], function (){
     Route::get('', [PokedexController::class, 'getPokemon']) 
         -> middleware('auth:api')
