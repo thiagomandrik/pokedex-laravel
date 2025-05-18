@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PokedexController;
 
 class FavoriteController extends Controller
 {
@@ -18,6 +19,12 @@ class FavoriteController extends Controller
     public function store($name)
     {
         $user = Auth::user();
+
+        $pokedexController = new PokedexController();
+        $pokemon = $pokedexController->findPokemon($name);
+        if (!$pokemon) {
+            return response()->json(['error' => 'Pokemon not found'], 404);
+        }
 
         $exists = Favorite::where('user_id', $user->id)
             ->where('pokemon_name', $name)

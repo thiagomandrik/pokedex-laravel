@@ -27,14 +27,21 @@ class PokedexController extends Controller
         return response()->json($response->json());
     }
 
-    public function showPokemon($name)
+    public function findPokemon($name)
     {
         $response = Http::get("{$this->POKEAPI_URL}/{$name}");
-
         if ($response->failed()) {
+            return null;
+        }
+        return $response->json();
+    }
+
+    public function showPokemon($name)
+    {
+        $pokemon = $this->findPokemon($name);
+        if (!$pokemon) {
             return response()->json(['error' => 'Pokemon not found'], 404);
         }
-
-        return response()->json($response->json());
+        return response()->json($pokemon);
     }
 }
