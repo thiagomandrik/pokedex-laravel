@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "df201afe-3054-4d4b-ab2d-1f07b76dfc1c",
-		"name": "pokedex-collection",
+		"name": "pokedex-collection docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32551196"
 	},
@@ -299,7 +299,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "http://127.0.0.1:8000",
+			"value": "http://127.0.0.1:8989",
 			"type": "string"
 		},
 		{
