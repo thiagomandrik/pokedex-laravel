@@ -7,12 +7,19 @@ use Illuminate\Support\Facades\Http;
 
 class PokedexController extends Controller
 {
+    private $POKEAPI_URL;
+
+    public function __construct()
+    {
+        $this->POKEAPI_URL = config('services.pokeapi.url');
+    }
+
     public function listPokemons(Request $request)
     {
         $limit = $request->get('limit', 20);
         $offset = $request->get('offset', 0);
 
-        $response = Http::get("https://pokeapi.co/api/v2/pokemon", [
+        $response = Http::get($this->POKEAPI_URL, [
             'limit' => $limit,
             'offset' => $offset,
         ]);
@@ -22,7 +29,7 @@ class PokedexController extends Controller
 
     public function showPokemon($name)
     {
-        $response = Http::get("https://pokeapi.co/api/v2/pokemon/{$name}");
+        $response = Http::get("{$this->POKEAPI_URL}/{$name}");
 
         if ($response->failed()) {
             return response()->json(['error' => 'Pokemon not found'], 404);
