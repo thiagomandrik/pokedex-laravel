@@ -1,9 +1,31 @@
-version: '1.0'
+version: '3.8'
 
 services:
-  mysql:
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+        - ./:/var/www
+    networks:
+        - pokedex_network
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8989:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/:/etc/nginx/conf.d/
+    networks:
+      - pokedex_network
+
+  db:
     image: mysql:8.0
-    container_name: pokedex_mysql
+    container_name: pokedex_db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
